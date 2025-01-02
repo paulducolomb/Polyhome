@@ -25,14 +25,14 @@
             app:srcCompat="@drawable/proprietaireuserlogo" />
 
         <LinearLayout
-            android:layout_width="169dp"
+            android:layout_width="255dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/text21"
-                android:layout_width="178dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="sans-serif-light"
@@ -45,8 +45,8 @@
 
         <ImageView
             android:id="@+id/deleters"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="89dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             app:srcCompat="@android:drawable/ic_delete" />

@@ -14,7 +14,6 @@ object ToasterObj {
             else -> "Erreur inconnue : $responseCode"
         }
 
-        // Assurez-vous d'exécuter sur le thread principal
         (context as? android.app.Activity)?.runOnUiThread {
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
         }

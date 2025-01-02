@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import android.widget.Toast
 import com.example.projetmaison.R
 import com.google.android.material.tabs.TabLayout
 
@@ -56,11 +57,21 @@ class DeviceAdapter(
                 btnStop.visibility = View.GONE
                 //progressBarShutter.visibility=View.GONE
                 btnOpen.setOnClickListener {
-                    (context as HouseDeviceActivity).sendCommand(device.id, "TURN ON")
+                    if (device.power.toInt() == 1) {
+                        Toast.makeText(context, "La lumière est déjà allumée", Toast.LENGTH_SHORT).show()
+                    } else {
+                        (context as HouseDeviceActivity).sendCommand(device.id, "TURN ON")
+                    }
                 }
+
                 btnClose.setOnClickListener {
-                    (context as HouseDeviceActivity).sendCommand(device.id, "TURN OFF")
+                    if (device.power.toInt() == 0) {
+                        Toast.makeText(context, "La lumière est déjà éteinte", Toast.LENGTH_SHORT).show()
+                    } else {
+                        (context as HouseDeviceActivity).sendCommand(device.id, "TURN OFF")
+                    }
                 }
+
 
                 if (device.power.toInt() == 1) {
                     stateImageView.setImageResource(R.drawable.ledon) // Image pour propriétaire
@@ -100,14 +111,25 @@ class DeviceAdapter(
                 //progressBarShutter.progress = device.opening.toInt()
 
                 btnOpen.setOnClickListener {
-                    (context as HouseDeviceActivity).sendCommand(device.id, "OPEN")
+                    if (device.opening.toInt() == 1 && device.openingMode.toInt() == 0) {
+                        Toast.makeText(context, "Le volet est déjà ouvert", Toast.LENGTH_SHORT).show()
+                    } else {
+                        (context as HouseDeviceActivity).sendCommand(device.id, "OPEN")
+                    }
                 }
+
+                btnClose.setOnClickListener {
+                    if (device.opening.toInt() == 0 && device.openingMode.toInt() == 1) {
+                        Toast.makeText(context, "Le volet est déjà fermé", Toast.LENGTH_SHORT).show()
+                    } else {
+                        (context as HouseDeviceActivity).sendCommand(device.id, "CLOSE")
+                    }
+                }
+
                 btnStop.setOnClickListener {
                     (context as HouseDeviceActivity).sendCommand(device.id, "STOP")
                 }
-                btnClose.setOnClickListener {
-                    (context as HouseDeviceActivity).sendCommand(device.id, "CLOSE")
-                }
+
 
             }
             else -> {

@@ -35,7 +35,7 @@ class HouseDeviceActivity : AppCompatActivity() {
     private val updateTask = object : Runnable {
         override fun run() {
             loadDevices()
-            handler.postDelayed(this, 500)
+            handler.postDelayed(this, 1000) //je mets une seconde pour que l'appui sur mon bouton soit bien pris en compte
         }
     }
 
